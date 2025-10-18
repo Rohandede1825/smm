@@ -48,13 +48,13 @@ services:
         sync: false
 
   # Frontend (Vite React) as a Static Site
-  - type: static_site
+  - type: web
     name: smm-frontend
     rootDir: frontend
+    runtime: static
     buildCommand: npm ci && npm run build
-    publishPath: dist
+    staticPublishPath: dist
     envVars:
       # Set after backend is deployed: https://<backend-url>/api/v1
       - key: VITE_API_BASE
         sync: false
-
