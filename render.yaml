@@ -1,0 +1,60 @@
+services:
+  # Backend API (Node + Express)
+  - type: web
+    name: smm-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: npm start
+    envVars:
+      # Required
+      - key: MONGODB_URI
+        sync: false # Fill with your MongoDB Atlas connection string
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+
+      # Optional but recommended
+      - key: CLIENT_URL
+        sync: false # Set to your frontend URL once deployed (e.g. https://smm-frontend.onrender.com)
+      - key: ENABLE_EMAIL_VERIFICATION
+        value: "false"
+      - key: REFERRAL_COMMISSION_PERCENT
+        value: "5"
+      - key: MIN_WITHDRAWAL
+        value: "100"
+
+      # Optional integrations (set only if used)
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+
+      # For one-off admin creation via script (see guide)
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+
+  # Frontend (Vite React) as a Static Site
+  - type: static_site
+    name: smm-frontend
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    publishPath: dist
+    envVars:
+      # Set after backend is deployed: https://<backend-url>/api/v1
+      - key: VITE_API_BASE
+        sync: false
+
