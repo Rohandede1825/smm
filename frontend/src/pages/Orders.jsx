@@ -1,0 +1,149 @@
+import React, { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { FiPackage, FiRefreshCw, FiAlertCircle, FiTrendingUp } from 'react-icons/fi'
+import { api } from '../api/client'
+
+const statusStyles = {
+  pending: 'bg-amber-500/10 text-amber-200 border border-amber-400/30',
+  processing: 'bg-sky-500/10 text-sky-200 border border-sky-400/30',
+  completed: 'bg-emerald-500/10 text-emerald-200 border border-emerald-400/30',
+  cancelled: 'bg-rose-500/10 text-rose-200 border border-rose-400/30',
+}
+
+export default function Orders() {
+  const [orders, setOrders] = useState([])
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let active = true
+    api('/orders')
+      .then((r) => {
+        if (!active) return
+        setOrders(r.orders ?? [])
+        setError('')
+      })
+      .catch((e) => {
+        if (!active) return
+        setError(e.message)
+      })
+      .finally(() => {
+        if (active) setLoading(false)
+      })
+    return () => {
+      active = false
+    }
+  }, [])
+
+  const formatDate = (value) => {
+    if (!value) return '—'
+    try {
+      return new Intl.DateTimeFormat('en-IN', {
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(new Date(value))
+    } catch {
+      return value
+    }
+  }
+
+  return (
+    <div className="space-y-8">
+      <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-lg shadow-brand-500/10">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h1 className="font-display text-3xl font-semibold text-white">Order stream</h1>
+            <p className="text-sm text-slate-300">
+              Track every campaign at a glance. Live status, spend, and service details keep your operations in sync.
+            </p>
+          </div>
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-300">
+            <FiTrendingUp className="text-brand-200" />
+            {orders.length} orders synced
+          </div>
+        </div>
+        {error && (
+          <div className="mt-6 flex items-center gap-3 rounded-2xl border border-rose-600/40 bg-rose-500/10 px-5 py-4 text-sm text-rose-200">
+            <FiAlertCircle className="text-lg" />
+            {error}
+          </div>
+        )}
+      </div>
+
+      <div className="overflow-hidden rounded-[24px] border border-white/10 bg-white/5 shadow-lg shadow-brand-500/5">
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-white/5 text-left text-sm text-slate-200">
+            <thead className="bg-white/5 text-xs uppercase tracking-[0.25em] text-slate-300">
+              <tr>
+                <th className="px-6 py-4">Order ID</th>
+                <th className="px-6 py-4">Service</th>
+                <th className="px-6 py-4">Quantity</th>
+                <th className="px-6 py-4">Price</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4">Created</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {loading && (
+                <>
+                  {Array.from({ length: 5 }).map((_, idx) => (
+                    <tr key={idx} className="animate-pulse">
+                      {Array.from({ length: 6 }).map((__, cell) => (
+                        <td key={cell} className="px-6 py-4">
+                          <div className="h-4 rounded bg-white/5" />
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </>
+              )}
+
+              {!loading && orders.length === 0 && (
+                <tr>
+                  <td colSpan={6} className="px-6 py-10 text-center text-sm text-slate-400">
+                    <div className="mx-auto flex max-w-md flex-col items-center gap-3">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-xl text-brand-200">
+                        <FiPackage />
+                      </div>
+                      <p>No orders yet. Launch your first service to see real-time tracking appear here.</p>
+                    </div>
+                  </td>
+                </tr>
+              )}
+
+              {!loading &&
+                orders.map((order) => {
+                  const statusKey = (order.status || '').toLowerCase()
+                  const statusClass = statusStyles[statusKey] || 'bg-white/10 text-slate-200 border border-white/10'
+                  return (
+                    <motion.tr
+                      key={order._id}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                      className="transition hover:bg-white/5"
+                    >
+                      <td className="px-6 py-4 font-semibold text-white">{order._id}</td>
+                      <td className="px-6 py-4 text-slate-200">{order.service?.name || order.service}</td>
+                      <td className="px-6 py-4 text-slate-300">{order.quantity}</td>
+                      <td className="px-6 py-4 text-brand-200 font-medium">₹{order.price}</td>
+                      <td className="px-6 py-4">
+                        <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ${statusClass}`}>
+                          <FiRefreshCw className={statusKey === 'processing' ? 'animate-spin-slow' : ''} />
+                          {order.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-slate-300">{formatDate(order.createdAt)}</td>
+                    </motion.tr>
+                  )
+                })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  )
+}

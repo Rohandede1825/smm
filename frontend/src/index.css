@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #0f172a;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(77, 106, 255, 0.12), rgba(15, 23, 42, 1));
+  color: #e2e8f0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.glass {
+  /* Dark translucent surface for strong contrast on dark theme */
+  @apply backdrop-blur-xl bg-slate-900/70 border border-white/10 shadow-glow;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-500 via-accent-500 to-brand-300;
+}
