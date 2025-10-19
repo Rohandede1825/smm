@@ -3,9 +3,9 @@ import { FiCreditCard, FiPlusCircle, FiAlertCircle, FiCheckCircle, FiDownload } 
 import { api } from '../api/client'
 
 const statusPills = {
-  completed: 'bg-emerald-500/10 text-emerald-200 border border-emerald-500/30',
-  pending: 'bg-amber-500/10 text-amber-200 border border-amber-500/30',
-  failed: 'bg-rose-500/10 text-rose-200 border border-rose-500/30',
+  completed: 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+  pending: 'bg-amber-50 text-amber-600 border border-amber-200',
+  failed: 'bg-rose-50 text-rose-600 border border-rose-200',
 }
 
 function useScript(src) {
@@ -72,7 +72,7 @@ export default function Wallet() {
           key: keyId,
           amount: order.amount, // in paise
           currency: order.currency || 'INR',
-          name: 'Instant SMM',
+          name: 'SMM',
           description: 'Wallet deposit',
           order_id: order.id,
           prefill: {
@@ -81,11 +81,16 @@ export default function Wallet() {
           },
           theme: { color: '#4d6aff' },
           handler: function () {
-            setInfo('Payment initiated. Wallet will be credited once webhook confirms the payment.')
-            // refresh txns after a short delay
-            setTimeout(() => {
-              api('/wallet/transactions').then((r)=> setTxns(r.transactions||[])).catch(()=>{})
-            }, 3000)
+            setInfo('Payment successful. Updating history…')
+            // quick refresh + short polling to reflect success in history
+            const refresh = () => api('/wallet/transactions').then((r)=> setTxns(r.transactions||[])).catch(()=>{})
+            refresh()
+            let tries = 0
+            const iv = setInterval(() => {
+              tries += 1
+              refresh()
+              if (tries >= 5) clearInterval(iv)
+            }, 2000)
           },
           modal: {
             ondismiss: function () {
@@ -148,13 +153,13 @@ export default function Wallet() {
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="Enter an amount to deposit"
-              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+              className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
             />
           </div>
           <button
             onClick={createDeposit}
             disabled={creating}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
           >
             {creating ? (
               <>
@@ -171,13 +176,13 @@ export default function Wallet() {
         </div>
 
         {info && (
-          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-100">
+          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-600">
             <FiCheckCircle className="text-lg" />
             {info}
           </div>
         )}
         {error && (
-          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-rose-600/40 bg-rose-500/10 px-5 py-4 text-sm text-rose-200">
+          <div className="mt-4 flex items-center gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-5 py-4 text-sm text-rose-600">
             <FiAlertCircle className="text-lg" />
             {error}
           </div>
@@ -185,10 +190,10 @@ export default function Wallet() {
       </div>
 
       <div className="rounded-[24px] border border-slate-200 bg-white shadow-lg shadow-brand-500/5">
-        <div className="flex items-center justify-between border-b border-white/5 px-6 py-5">
+        <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5">
           <div>
-            <h2 className="font-display text-xl font-semibold text-white">Transaction history</h2>
-            <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Wallet · Razorpay · Referrals</p>
+            <h2 className="font-display text-xl font-semibold text-slate-900">Transaction history</h2>
+            <p className="text-xs uppercase tracking-[0.35em] text-slate-500">Wallet · Razorpay · Referrals</p>
           </div>
           <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-slate-600">
             {txns.length} records
@@ -196,43 +201,43 @@ export default function Wallet() {
         </div>
         <div className="max-h-[420px] overflow-y-auto">
           {loading ? (
-            <div className="divide-y divide-white/5">
+            <div className="divide-y divide-slate-100">
               {Array.from({ length: 6 }).map((_, idx) => (
                 <div key={idx} className="flex animate-pulse items-center justify-between px-6 py-5">
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-full bg-white/5" />
+                    <div className="h-10 w-10 rounded-full bg-slate-100" />
                     <div className="space-y-2">
-                      <div className="h-4 w-40 rounded bg-white/5" />
-                      <div className="h-3 w-24 rounded bg-white/5" />
+                      <div className="h-4 w-40 rounded bg-slate-100" />
+                      <div className="h-3 w-24 rounded bg-slate-100" />
                     </div>
                   </div>
-                  <div className="h-4 w-16 rounded bg-white/5" />
+                  <div className="h-4 w-16 rounded bg-slate-100" />
                 </div>
               ))}
             </div>
           ) : txns.length === 0 ? (
-            <div className="px-6 py-10 text-center text-sm text-slate-400">
+            <div className="px-6 py-10 text-center text-sm text-slate-500">
               No transactions logged yet. Deposits, withdrawals, and order debits will appear instantly.
             </div>
           ) : (
-            <div className="divide-y divide-white/5">
+            <div className="divide-y divide-slate-100">
               {txns.map((txn) => {
-                const pillClass = statusPills[txn.status?.toLowerCase()] || 'bg-white/10 text-slate-600 border border-white/10'
+                const pillClass = statusPills[txn.status?.toLowerCase()] || 'bg-slate-100 text-slate-600 border border-slate-200'
                 return (
                   <div key={txn._id} className="flex flex-col gap-4 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-lg text-brand-200">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-lg text-brand-600">
                         <FiCreditCard />
                       </div>
                       <div>
-                        <p className="font-semibold text-white capitalize">
-                          {txn.type} <span className="text-xs text-slate-400">• {txn.status}</span>
+                        <p className="font-semibold text-slate-800 capitalize">
+                          {txn.type} <span className="text-xs text-slate-500">• {txn.status}</span>
                         </p>
-                        <p className="text-xs text-slate-400">{formatDate(txn.createdAt)}</p>
+                        <p className="text-xs text-slate-500">{formatDate(txn.createdAt)}</p>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end gap-2 text-sm text-white sm:flex-row sm:items-center sm:gap-4">
-                      <span className="font-medium text-brand-200">{formatCurrency(txn.amount)}</span>
+                    <div className="flex flex-col items-end gap-2 text-sm text-slate-700 sm:flex-row sm:items-center sm:gap-4">
+                      <span className="font-medium text-brand-600">{formatCurrency(txn.amount)}</span>
                       <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ${pillClass}`}>
                         {txn.status}
                       </span>
