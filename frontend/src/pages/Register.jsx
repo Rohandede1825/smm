@@ -43,33 +43,33 @@ export default function Register() {
   }
 
   return (
-    <div className="relative mx-auto grid w-full max-w-6xl items-start gap-12 rounded-[32px] border border-white/10 bg-white/5 p-8 shadow-xl shadow-brand-500/10 backdrop-blur-lg lg:grid-cols-[1.1fr_0.9fr]">
+    <div className="relative mx-auto grid w-full max-w-6xl items-start gap-12 rounded-[32px] border border-slate-200 bg-white p-8 shadow-float lg:grid-cols-[1.1fr_0.9fr]">
       <motion.div
         initial={{ opacity: 0, x: -40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6 }}
         className="space-y-6"
       >
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-1 text-[12px] font-semibold uppercase tracking-[0.35em] text-slate-200">
+        <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-1 text-[12px] font-semibold uppercase tracking-[0.3em] text-brand-700">
           Start Scaling
         </span>
-        <h1 className="font-display text-4xl font-bold text-white sm:text-5xl">
-          Create your Instant SMM command center.
+        <h1 className="font-display text-4xl font-bold text-slate-900 sm:text-5xl">
+          Create your SMM command center.
         </h1>
-        <p className="text-sm leading-6 text-slate-300 sm:text-base">
+        <p className="text-sm leading-6 text-slate-600 sm:text-base">
           Onboard in minutes, connect Razorpay, invite your team, and activate a refined marketplace of premium social
-          services. Instant SMM accelerates agencies, resellers, and growth hackers alike.
+          services. Our SMM platform accelerates agencies, resellers, and growth hackers alike.
         </p>
-        <div className="grid gap-4 text-sm text-slate-300 sm:grid-cols-2">
-          <div className="rounded-3xl border border-white/5 bg-white/5 p-5">
-            <h3 className="font-semibold text-white">Admin & Staff controls</h3>
-            <p className="mt-2 text-sm text-slate-300">
+        <div className="grid gap-4 text-sm text-slate-600 sm:grid-cols-2">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <h3 className="font-semibold text-slate-900">Admin & Staff controls</h3>
+            <p className="mt-2 text-sm text-slate-600">
               Manage teams, approvals, and role-based dashboards effortlessly.
             </p>
           </div>
-          <div className="rounded-3xl border border-white/5 bg-white/5 p-5">
-            <h3 className="font-semibold text-white">Automated monetisation</h3>
-            <p className="mt-2 text-sm text-slate-300">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
+            <h3 className="font-semibold text-slate-900">Automated monetisation</h3>
+            <p className="mt-2 text-sm text-slate-600">
               Razorpay deposits, referral rewards, and webhook-driven updates built in.
             </p>
           </div>
@@ -80,74 +80,74 @@ export default function Register() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="glass relative flex flex-col gap-5 rounded-[28px] p-8"
+        className="relative flex flex-col gap-5 rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm"
         onSubmit={onSubmit}
       >
-        <div className="absolute -top-28 right-6 hidden h-36 w-36 rounded-full bg-gradient-to-br from-accent-500/60 to-brand-500/50 blur-3xl sm:block" />
-        <h2 className="font-display text-2xl font-semibold text-white">Create account</h2>
+        <div className="absolute -top-28 right-6 hidden h-36 w-36 rounded-full bg-brand-200/40 blur-3xl sm:block" />
+        <h2 className="font-display text-2xl font-semibold text-slate-900">Create account</h2>
         {info && (
-          <div className="rounded-xl border border-emerald-400/40 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-600">
             {info}
           </div>
         )}
         {error && (
-          <div className="rounded-xl border border-rose-700/40 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+          <div className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-500">
             {error}
           </div>
         )}
-        <label className="text-sm font-medium text-slate-200">
+        <label className="text-sm font-medium text-slate-600">
           Full name
-          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3">
-            <FiUser className="text-slate-400" />
+          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <FiUser className="text-slate-500" />
             <input
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Skyline Agency"
-              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+              className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
             />
           </div>
         </label>
 
-        <label className="text-sm font-medium text-slate-200">
+        <label className="text-sm font-medium text-slate-600">
           Email
-          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3">
-            <FiMail className="text-slate-400" />
+          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <FiMail className="text-slate-500" />
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="hello@agency.com"
-              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+              className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
             />
           </div>
         </label>
 
-        <label className="text-sm font-medium text-slate-200">
+        <label className="text-sm font-medium text-slate-600">
           Password
-          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3">
-            <FiLock className="text-slate-400" />
+          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <FiLock className="text-slate-500" />
             <input
               type="password"
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Choose something strong"
-              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+              className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
             />
           </div>
         </label>
 
-        <label className="text-sm font-medium text-slate-200">
+        <label className="text-sm font-medium text-slate-600">
           Referral code (optional)
-          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3">
-            <FiGift className="text-slate-400" />
+          <div className="mt-2 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+            <FiGift className="text-slate-500" />
             <input
               value={referral}
               onChange={(e) => setReferral(e.target.value)}
               placeholder="Have a partner hook-up?"
-              className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+              className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
             />
           </div>
         </label>
@@ -155,7 +155,7 @@ export default function Register() {
         <button
           type="submit"
           disabled={loading}
-          className="group mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-accent-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/40 transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+          className="group mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? (
             <>
@@ -170,9 +170,9 @@ export default function Register() {
           )}
         </button>
 
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-slate-500">
           Already have access?{' '}
-          <Link to="/login" className="text-brand-200 underline-offset-4 hover:underline">
+          <Link to="/login" className="text-brand-600 underline-offset-4 hover:underline">
             Sign in instead
           </Link>
         </p>

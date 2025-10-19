@@ -64,14 +64,14 @@ const featureHighlights = [
 ]
 
 const socialPlatforms = [
-  { name: 'Instagram', gradient: 'from-[#833AB4] via-[#FD1D1D] to-[#FDCB52]', Icon: SiInstagram },
-  { name: 'TikTok', gradient: 'from-[#010101] via-[#EE1D52] to-[#69C9D0]', Icon: SiTiktok },
-  { name: 'Twitter / X', gradient: 'from-[#1DA1F2] to-[#1A8CD8]', Icon: FaTwitter },
-  { name: 'Facebook', gradient: 'from-[#1877F2] to-[#0F6AE6]', Icon: SiFacebook },
-  { name: 'YouTube', gradient: 'from-[#FF0000] to-[#CC0000]', Icon: SiYoutube },
-  { name: 'Telegram', gradient: 'from-[#2AABEE] to-[#229ED9]', Icon: SiTelegram },
-  { name: 'Snapchat', gradient: 'from-[#FFFC00] to-[#FFB300]', Icon: SiSnapchat },
-  { name: 'WhatsApp', gradient: 'from-[#25D366] to-[#128C7E]', Icon: SiWhatsapp },
+  { name: 'Instagram', color: '#E1306C', textColor: '#ffffff', Icon: SiInstagram },
+  { name: 'TikTok', color: '#0F0F0F', textColor: '#ffffff', Icon: SiTiktok },
+  { name: 'Twitter / X', color: '#1DA1F2', textColor: '#ffffff', Icon: FaTwitter },
+  { name: 'Facebook', color: '#1877F2', textColor: '#ffffff', Icon: SiFacebook },
+  { name: 'YouTube', color: '#FF0000', textColor: '#ffffff', Icon: SiYoutube },
+  { name: 'Telegram', color: '#229ED9', textColor: '#ffffff', Icon: SiTelegram },
+  { name: 'Snapchat', color: '#FFFB00', textColor: '#111827', Icon: SiSnapchat },
+  { name: 'WhatsApp', color: '#25D366', textColor: '#ffffff', Icon: SiWhatsapp },
 ]
 
 const containerVariants = {
@@ -132,28 +132,27 @@ export default function Dashboard() {
           transition={{ duration: 0.7 }}
           className="space-y-6"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-slate-200">
+          <span className="inline-flex items-center gap-2 rounded-full border border-brand-100 bg-brand-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
             Elite SMM Automation
           </span>
-          <h1 className="font-display text-4xl font-extrabold leading-tight text-white sm:text-5xl lg:text-6xl">
-            Scale your social proof with a{' '}
-            <span className="gradient-text">next-gen growth command center.</span>
+          <h1 className="font-display text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            Scale your social proof with a <span className="highlight-text">calm, human dashboard.</span>
           </h1>
-          <p className="max-w-2xl text-lg text-slate-300">
-            Instant SMM fuses premium services, real-time tracking, and deep automation into a single immersive
-            dashboard. From orders to withdrawals, orchestrate every campaign with cinematic clarity.
+          <p className="max-w-2xl text-lg text-slate-600">
+            Our SMM workspace combines dependable delivery, intuitive monitoring, and a wallet that syncs in real time.
+            Spend less time guessing and more time growing what matters.
           </p>
           <div className="flex flex-wrap items-center gap-4 pt-4">
             <Link
               to="/services"
-              className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 via-brand-400 to-accent-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/40 transition duration-200 hover:-translate-y-0.5 hover:shadow-xl"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition duration-200 hover:-translate-y-0.5 hover:bg-brand-600"
             >
               Explore services
               <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1.5" />
             </Link>
             <Link
               to="/register"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-white/30 hover:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-brand-300 hover:text-brand-600"
             >
               Create account
             </Link>
@@ -163,25 +162,25 @@ export default function Dashboard() {
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="relative rounded-[32px] border border-white/10 bg-white/10 p-[1px] shadow-glow"
+          className="relative"
         >
-          <div className="relative overflow-hidden rounded-[30px] bg-slate-900/70 p-8">
-            <div className="absolute -right-10 top-[-60px] h-56 w-56 rounded-full bg-brand-500/25 blur-3xl" />
-            <div className="absolute -left-8 bottom-[-50px] h-44 w-44 rounded-full bg-accent-500/20 blur-2xl" />
-            <div className="relative space-y-6">
+          <div className="surface-card relative overflow-hidden p-8">
+            <div className="absolute -right-14 -top-20 h-56 w-56 rounded-full bg-brand-200/40 blur-3xl" />
+            <div className="absolute -left-10 bottom-[-60px] h-48 w-48 rounded-full bg-accent-400/30 blur-3xl" />
+            <div className="relative space-y-6 text-slate-600">
               {user ? (
                 <div className="space-y-2">
-                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-200/80">Welcome back</p>
-                  <h3 className="font-display text-2xl font-bold text-white">{user.name}</h3>
-                  <p className="text-sm text-slate-300">Your growth arsenal is fully synced and ready to deploy.</p>
+                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500/80">Welcome back</p>
+                  <h3 className="font-display text-2xl font-bold text-slate-900">{user.name}</h3>
+                  <p className="text-sm text-slate-500">Your workspace is synced and ready to launch fresh campaigns.</p>
                   <div className="grid gap-4 pt-4 sm:grid-cols-2">
-                    <div className="rounded-2xl bg-white/10 p-4 text-sm">
-                      <p className="text-xs uppercase tracking-[0.35em] text-slate-300/80">Wallet Balance</p>
-                      <p className="mt-2 text-2xl font-semibold text-white">{formatCurrency(user.walletBalance ?? 0)}</p>
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm">
+                      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Wallet balance</p>
+                      <p className="mt-2 text-2xl font-semibold text-slate-900">{formatCurrency(user.walletBalance ?? 0)}</p>
                     </div>
-                    <div className="rounded-2xl bg-white/10 p-4 text-sm">
-                      <p className="text-xs uppercase tracking-[0.35em] text-slate-300/80">Referral Earnings</p>
-                      <p className="mt-2 text-2xl font-semibold text-white">
+                    <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm">
+                      <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Referral earnings</p>
+                      <p className="mt-2 text-2xl font-semibold text-slate-900">
                         {formatCurrency(user.referralBalance ?? 0)}
                       </p>
                     </div>
@@ -189,16 +188,15 @@ export default function Dashboard() {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.4em] text-brand-200/80">Live preview</p>
-                  <h3 className="font-display text-2xl font-bold text-white">
+                  <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-500/80">Live preview</p>
+                  <h3 className="font-display text-2xl font-bold text-slate-900">
                     Real-time metrics unlock once you sign in.
                   </h3>
-                  <p className="text-sm text-slate-300">
-                    Monitor wallet balances, referrals, and active orders with cinematic dashboards tailored to your
-                    brand.
+                  <p className="text-sm text-slate-500">
+                    Keep an eye on balances, referrals, and active orders with dashboards that feel human—no AI guesswork.
                   </p>
                   {error && (
-                    <div className="rounded-2xl border border-white/10 bg-red-500/10 px-4 py-3 text-sm text-rose-200">
+                    <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-500">
                       {error}
                     </div>
                   )}
@@ -208,10 +206,7 @@ export default function Dashboard() {
               {loading && (
                 <div className="grid gap-4 pt-6 sm:grid-cols-3">
                   {heroStats.map((item, idx) => (
-                    <div
-                      key={`skeleton-${idx}`}
-                      className="h-24 animate-pulse rounded-2xl bg-white/5"
-                    />
+                    <div key={`skeleton-${idx}`} className="h-24 animate-pulse rounded-2xl bg-slate-100" />
                   ))}
                 </div>
               )}
@@ -222,13 +217,13 @@ export default function Dashboard() {
                     <motion.div
                       key={label}
                       variants={cardVariants}
-                      className="rounded-2xl bg-white/10 p-4"
+                      className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
                     >
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-brand-200">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-500">
                         <Icon />
                       </div>
-                      <p className="mt-4 font-display text-xl font-semibold text-white">{value}</p>
-                      <p className="text-xs text-slate-300">{label}</p>
+                      <p className="mt-4 font-display text-xl font-semibold text-slate-900">{value}</p>
+                      <p className="text-xs text-slate-500">{label}</p>
                     </motion.div>
                   ))}
                 </motion.div>
@@ -241,14 +236,14 @@ export default function Dashboard() {
       <section className="space-y-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-semibold text-white">How it works</h2>
-            <p className="text-slate-300">
-              Seamless onboarding, powerful automations, and actionable insights—engineered for modern agencies.
+            <h2 className="font-display text-3xl font-semibold text-slate-900">How it works</h2>
+            <p className="text-slate-600">
+              Create an account, choose the service that fits, and track the progress without digging through menus.
             </p>
           </div>
           <Link
             to="/register"
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-slate-100 transition hover:border-white/30 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-medium text-slate-600 shadow-sm transition hover:border-brand-300 hover:text-brand-600"
           >
             Join the platform
             <FiArrowRight />
@@ -265,15 +260,15 @@ export default function Dashboard() {
             <motion.div
               key={title}
               variants={cardVariants}
-              className="group relative overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-400/60 hover:bg-white/10"
+              className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
             >
-              <div className="absolute -right-10 top-10 h-28 w-28 rounded-full bg-brand-500/15 blur-2xl transition duration-300 group-hover:bg-brand-400/25" />
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 via-brand-400 to-accent-500 text-white shadow-lg shadow-brand-500/40">
+              <div className="absolute -right-12 top-10 h-28 w-28 rounded-full bg-brand-100/60 blur-2xl transition duration-300 group-hover:bg-brand-200/70" />
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-500 text-white shadow-sm">
                 <Icon />
               </div>
-              <h3 className="relative mt-6 font-display text-xl font-semibold text-white">{title}</h3>
-              <p className="relative mt-3 text-sm leading-relaxed text-slate-300">{description}</p>
-              <span className="relative mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">
+              <h3 className="relative mt-6 font-display text-xl font-semibold text-slate-900">{title}</h3>
+              <p className="relative mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
+              <span className="relative mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">
                 Step {idx + 1}
               </span>
             </motion.div>
@@ -284,8 +279,8 @@ export default function Dashboard() {
       <section className="space-y-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-semibold text-white">Why marketers choose Instant SMM</h2>
-            <p className="max-w-2xl text-slate-300">
+            <h2 className="font-display text-3xl font-semibold text-slate-900">Why marketers choose SMM</h2>
+            <p className="max-w-2xl text-slate-600">
               Every surface is tuned for velocity and visibility—empowering agencies, resellers, and creators alike.
             </p>
           </div>
@@ -301,14 +296,14 @@ export default function Dashboard() {
             <motion.div
               key={title}
               variants={cardVariants}
-              className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-6 transition duration-300 hover:-translate-y-1 hover:border-brand-400/60 hover:bg-white/10"
+              className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-lg"
             >
-              <div className="absolute -left-10 top-10 h-32 w-32 rounded-full bg-accent-500/10 blur-3xl" />
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-brand-200">
+              <div className="absolute -left-12 top-12 h-32 w-32 rounded-full bg-accent-200/60 blur-3xl" />
+              <div className="relative flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-500">
                 <Icon className="text-xl" />
               </div>
-              <h3 className="relative mt-6 font-display text-xl font-semibold text-white">{title}</h3>
-              <p className="relative mt-3 text-sm leading-relaxed text-slate-300">{description}</p>
+              <h3 className="relative mt-6 font-display text-xl font-semibold text-slate-900">{title}</h3>
+              <p className="relative mt-3 text-sm leading-relaxed text-slate-600">{description}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -317,54 +312,56 @@ export default function Dashboard() {
       <section className="space-y-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-semibold text-white">Elite coverage across every network</h2>
-            <p className="max-w-2xl text-slate-300">
+            <h2 className="font-display text-3xl font-semibold text-slate-900">Elite coverage across every network</h2>
+            <p className="max-w-2xl text-slate-600">
               Tap curated growth plays for the world&apos;s biggest social platforms—all orchestrated from one command
               center.
             </p>
           </div>
           <Link
             to="/services"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-5 py-2 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-0.5 hover:shadow-xl"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600"
           >
             Browse catalog
             <FiArrowRight className="text-base" />
           </Link>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {socialPlatforms.map(({ name, gradient, Icon }) => (
+          {socialPlatforms.map(({ name, color, textColor, Icon }) => (
             <motion.div
               key={name}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.4 }}
-              className="relative overflow-hidden rounded-3xl border border-white/5 bg-white/5 p-6"
+              className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm"
             >
-              <div className={`flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br ${gradient} text-white text-2xl`}>
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-full text-2xl"
+                style={{ backgroundColor: color, color: textColor }}
+              >
                 <Icon />
               </div>
-              <h3 className="mt-5 font-display text-lg font-semibold text-white">{name}</h3>
-              <p className="mt-2 text-sm text-slate-300">Premium campaigns engineered for viral reach and lasting lift.</p>
+              <h3 className="mt-5 font-display text-lg font-semibold text-slate-900">{name}</h3>
+              <p className="mt-2 text-sm text-slate-600">Premium campaigns engineered for viral reach and lasting lift.</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-      <section className="relative overflow-hidden rounded-[36px] border border-white/10 bg-gradient-to-br from-brand-600/90 via-brand-500/80 to-accent-500/70 p-10">
-        <div className="absolute inset-0 -z-10 opacity-50 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.35), transparent 60%)' }} />
+      <section className="rounded-[36px] border border-slate-200 bg-brand-600 p-10 text-white">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-semibold text-white">Ready to launch your next win?</h2>
-            <p className="max-w-xl text-sm text-white/80">
-              Join thousands of campaigns already scaling with Instant SMM and unlock the full force of analytics,
-              automation, and responsive support.
+            <h2 className="font-display text-3xl font-semibold">Ready to launch your next win?</h2>
+            <p className="max-w-xl text-sm text-white/90">
+              Join thousands of campaigns already scaling with SMM and unlock a calmer way to manage growth,
+              automation, and support.
             </p>
           </div>
           <div className="flex flex-col gap-4 sm:flex-row">
             <Link
               to="/login"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/25"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
             >
               Sign in
             </Link>

@@ -77,21 +77,21 @@ export default function Profile() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-lg shadow-brand-500/10">
-        <h1 className="font-display text-3xl font-semibold text-white">Profile & Credentials</h1>
-        <p className="text-sm text-slate-300">
+      <div className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-float">
+        <h1 className="font-display text-3xl font-semibold text-slate-900">Profile & Credentials</h1>
+        <p className="text-sm text-slate-600">
           Keep your operator details fresh and manage API access for automated order placement or partner integrations.
         </p>
       </div>
 
       {error && (
-        <div className="flex items-center gap-3 rounded-2xl border border-rose-600/40 bg-rose-500/10 px-5 py-4 text-sm text-rose-200">
+        <div className="flex items-center gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-5 py-4 text-sm text-rose-600">
           <FiAlertCircle className="text-lg" />
           {error}
         </div>
       )}
       {success && (
-        <div className="flex items-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-200">
+        <div className="flex items-center gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4 text-sm text-emerald-600">
           <FiCheckCircle className="text-lg" />
           {success}
         </div>
@@ -102,9 +102,9 @@ export default function Profile() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="glass rounded-[28px] p-8"
+          className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm"
         >
-          <h2 className="font-display text-2xl font-semibold text-white">Account details</h2>
+          <h2 className="font-display text-2xl font-semibold text-slate-900">Account details</h2>
           {loading ? (
             <div className="mt-6 space-y-4">
               {Array.from({ length: 3 }).map((_, idx) => (
@@ -113,28 +113,28 @@ export default function Profile() {
             </div>
           ) : me ? (
             <div className="mt-6 space-y-5">
-              <label className="text-sm font-medium text-slate-200">
+              <label className="text-sm font-medium text-slate-600">
                 Name
-                <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3">
+                <div className="mt-2 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                   <FiUser className="text-slate-400" />
                   <input
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+                    className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
                     placeholder="Your name"
                   />
                 </div>
               </label>
 
-              <label className="text-sm font-medium text-slate-200">
+              <label className="text-sm font-medium text-slate-600">
                 Email
-                <div className="mt-2 flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3">
+                <div className="mt-2 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
                   <FiMail className="text-slate-400" />
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-500"
+                    className="flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
                     placeholder="you@agency.com"
                   />
                 </div>
@@ -143,7 +143,7 @@ export default function Profile() {
               <button
                 onClick={save}
                 disabled={saving}
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {saving ? (
                   <>
@@ -159,7 +159,7 @@ export default function Profile() {
               </button>
             </div>
           ) : (
-            <p className="mt-4 text-sm text-slate-300">Profile data unavailable.</p>
+            <p className="mt-4 text-sm text-slate-600">Profile data unavailable.</p>
           )}
         </motion.div>
 
@@ -167,36 +167,36 @@ export default function Profile() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="glass rounded-[28px] p-8"
+          className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-sm"
         >
-          <h2 className="font-display text-2xl font-semibold text-white">API access</h2>
-          <p className="mt-2 text-sm text-slate-300">
+          <h2 className="font-display text-2xl font-semibold text-slate-900">API access</h2>
+          <p className="mt-2 text-sm text-slate-600">
             Generate personal API keys for scripted orders or partner integrations. Protect them like passwords.
           </p>
           <div className="mt-6 space-y-4">
-            <div className="rounded-2xl border border-white/10 bg-slate-900/70 p-4 text-sm text-slate-200">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-lg text-brand-200">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-lg text-brand-600">
                     <FiKey />
                   </div>
                   <div>
-                    <p className="font-medium text-white">Current API key</p>
+                    <p className="font-medium text-slate-900">Current API key</p>
                     <p className="text-xs text-slate-400">Rotate regularly and never share it publicly.</p>
                   </div>
                 </div>
-                <span className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.35em] ${apiKey ? 'bg-emerald-500/10 text-emerald-200 border border-emerald-500/30' : 'bg-white/10 text-slate-300 border border-white/10'}`}>
+                <span className={`rounded-full px-3 py-1 text-[11px] uppercase tracking-[0.35em] ${apiKey ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : 'bg-slate-100 text-slate-500 border border-slate-200'}`}>
                   {apiKey ? 'Active' : 'None'}
                 </span>
               </div>
-              <code className="mt-4 block max-w-full overflow-x-auto rounded-xl bg-black/30 px-4 py-3 font-mono text-xs text-emerald-200">
+              <code className="mt-4 block max-w-full overflow-x-auto rounded-xl bg-slate-900/90 px-4 py-3 font-mono text-xs text-emerald-100">
                 {apiKey || 'Generate a key to begin using the developer API.'}
               </code>
               <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <button
                   onClick={genKey}
                   disabled={generating}
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-5 py-2 text-sm font-semibold text-white shadow-lg shadow-brand-500/30 transition hover:-translate-y-0.5 hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-70"
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-brand-600 disabled:cursor-not-allowed disabled:opacity-70"
                 >
                   {generating ? (
                     <>
@@ -213,7 +213,7 @@ export default function Profile() {
                 <button
                   onClick={copyKey}
                   disabled={!apiKey}
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-slate-200 transition hover:border-white/20 hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-200 bg-white px-5 py-2 text-sm font-medium text-slate-600 transition hover:border-brand-200 hover:text-brand-600 disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   <FiCopy />
                   Copy key
@@ -221,9 +221,9 @@ export default function Profile() {
               </div>
             </div>
             {me && (
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-slate-200">
+              <div className="rounded-2xl border border-slate-200 bg-white p-4 text-sm text-slate-600">
                 <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Referral code</p>
-                <p className="mt-2 font-display text-2xl font-semibold text-white">{me.referralCode}</p>
+                <p className="mt-2 font-display text-2xl font-semibold text-slate-900">{me.referralCode}</p>
                 <p className="mt-1 text-xs text-slate-400">
                   Share your referral link to earn commissions on successful deposits.
                 </p>

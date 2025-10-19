@@ -127,22 +127,22 @@ export default function Wallet() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-lg shadow-brand-500/10">
+      <div className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-lg shadow-brand-500/10">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h1 className="font-display text-3xl font-semibold text-white">Wallet & Billing</h1>
-            <p className="text-sm text-slate-300">
+            <h1 className="font-display text-3xl font-semibold text-slate-900">Wallet & Billing</h1>
+            <p className="text-sm text-slate-600">
               Manage deposits, referral earnings, and audit-ready transaction logs from a single control hub.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs text-slate-600">
             <FiCreditCard className="text-brand-200" />
             Securely backed by Razorpay
           </div>
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-[1fr_auto]">
-          <div className="flex items-center gap-3 rounded-full border border-white/10 bg-slate-900/70 px-4 py-3">
+          <div className="flex items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4 py-3">
             <FiPlusCircle className="text-slate-400" />
             <input
               value={amount}
@@ -184,13 +184,13 @@ export default function Wallet() {
         )}
       </div>
 
-      <div className="rounded-[24px] border border-white/10 bg-white/5 shadow-lg shadow-brand-500/5">
+      <div className="rounded-[24px] border border-slate-200 bg-white shadow-lg shadow-brand-500/5">
         <div className="flex items-center justify-between border-b border-white/5 px-6 py-5">
           <div>
             <h2 className="font-display text-xl font-semibold text-white">Transaction history</h2>
             <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Wallet · Razorpay · Referrals</p>
           </div>
-          <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-slate-300">
+          <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] uppercase tracking-[0.35em] text-slate-600">
             {txns.length} records
           </span>
         </div>
@@ -217,7 +217,7 @@ export default function Wallet() {
           ) : (
             <div className="divide-y divide-white/5">
               {txns.map((txn) => {
-                const pillClass = statusPills[txn.status?.toLowerCase()] || 'bg-white/10 text-slate-200 border border-white/10'
+                const pillClass = statusPills[txn.status?.toLowerCase()] || 'bg-white/10 text-slate-600 border border-white/10'
                 return (
                   <div key={txn._id} className="flex flex-col gap-4 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
                     <div className="flex items-center gap-4">

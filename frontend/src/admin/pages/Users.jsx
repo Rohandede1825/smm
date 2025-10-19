@@ -21,7 +21,7 @@ export default function AdminUsers() {
       {error && <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">{error}</div>}
       <div className="flex gap-3">
         <input value={q} onChange={(e)=>setQ(e.target.value)} placeholder="Search name/email" className="flex-1 rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white outline-none"/>
-        <button onClick={load} className="rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-4 py-2 text-sm font-semibold text-white">Search</button>
+        <button onClick={load} className="rounded-full bg-brand-500 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-600">Search</button>
       </div>
       <div className="overflow-x-auto rounded-xl border border-white/10 bg-white/5">
         <table className="min-w-full divide-y divide-white/5 text-left text-sm">
@@ -50,4 +50,3 @@ export default function AdminUsers() {
     </div>
   )
 }
-

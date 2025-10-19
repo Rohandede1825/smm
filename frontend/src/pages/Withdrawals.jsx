@@ -42,13 +42,13 @@ export default function Withdrawals() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-lg shadow-brand-500/10">
+      <div className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-lg shadow-brand-500/10">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="font-display text-3xl font-semibold text-white">Withdraw funds</h1>
-            <p className="text-sm text-slate-300">Move balances to your bank via UPI after reaching the minimum limit.</p>
+            <h1 className="font-display text-3xl font-semibold text-slate-900">Withdraw funds</h1>
+            <p className="text-sm text-slate-600">Move balances to your bank via UPI after reaching the minimum limit.</p>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs text-slate-600">
             <FiTrendingUp className="text-brand-200" /> {list.length} requests
           </div>
         </div>
@@ -65,9 +65,9 @@ export default function Withdrawals() {
             value={amount}
             onChange={(e)=>setAmount(e.target.value)}
             placeholder="Amount"
-            className="rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none"
+            className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none"
           />
-          <select value={fromBalance} onChange={(e)=>setFromBalance(e.target.value)} className="rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white outline-none">
+          <select value={fromBalance} onChange={(e)=>setFromBalance(e.target.value)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-white outline-none">
             <option value="main">Main</option>
             <option value="referral">Referral</option>
           </select>
@@ -75,7 +75,7 @@ export default function Withdrawals() {
             value={upi}
             onChange={(e)=>setUpi(e.target.value)}
             placeholder="UPI ID"
-            className="rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none"
+            className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none"
           />
           <button onClick={requestWithdrawal} className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-5 py-2 text-sm font-semibold text-white">
             <FiSend /> Request
@@ -83,10 +83,10 @@ export default function Withdrawals() {
         </div>
       </div>
 
-      <div className="rounded-[24px] border border-white/10 bg-white/5 shadow-lg shadow-brand-500/5">
+      <div className="rounded-[24px] border border-slate-200 bg-white shadow-lg shadow-brand-500/5">
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-white/5 text-left text-sm text-slate-200">
-            <thead className="bg-white/5 text-xs uppercase tracking-[0.25em] text-slate-300">
+          <table className="min-w-full divide-y divide-white/5 text-left text-sm text-slate-600">
+            <thead className="bg-white/5 text-xs uppercase tracking-[0.25em] text-slate-600">
               <tr>
                 <th className="px-6 py-4">Amount</th>
                 <th className="px-6 py-4">From</th>

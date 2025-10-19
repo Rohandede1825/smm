@@ -28,8 +28,7 @@ export default function AdminSettings() {
           </label>
         ))}
       </div>
-      <button onClick={save} className="rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-5 py-2 text-sm font-semibold text-white">Save</button>
+      <button onClick={save} className="rounded-full bg-brand-500 px-5 py-2 text-sm font-semibold text-white transition hover:bg-brand-600">Save</button>
     </div>
   )
 }
-

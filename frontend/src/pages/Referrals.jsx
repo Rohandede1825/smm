@@ -45,13 +45,13 @@ export default function Referrals() {
 
   return (
     <div className="space-y-8">
-      <div className="rounded-[28px] border border-white/10 bg-white/5 p-8 shadow-lg shadow-brand-500/10">
+      <div className="rounded-[28px] border border-slate-200 bg-white p-8 shadow-lg shadow-brand-500/10">
         <div className="flex items-start justify-between gap-6">
           <div>
-            <h1 className="font-display text-3xl font-semibold text-white">Referral program</h1>
-            <p className="text-sm text-slate-300">Invite users and earn a commission on their deposits.</p>
+            <h1 className="font-display text-3xl font-semibold text-slate-900">Referral program</h1>
+            <p className="text-sm text-slate-600">Invite users and earn a commission on their deposits.</p>
           </div>
-          <button onClick={load} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs text-slate-300 hover:border-white/20">
+          <button onClick={load} className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs text-slate-600 hover:border-white/20">
             <FiRefreshCw /> Refresh
           </button>
         </div>
@@ -64,24 +64,24 @@ export default function Referrals() {
         )}
 
         <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5">
             <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Your referral code</p>
-            <div className="mt-2 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white">
+            <div className="mt-2 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-white">
               <FiGift className="text-brand-200" />
               {loading ? 'Loading…' : code}
             </div>
             <p className="mt-3 text-xs text-slate-400">Share link:</p>
-            <code className="mt-1 block max-w-full overflow-x-auto rounded-xl bg-black/30 px-3 py-2 text-xs text-slate-200">{referralLink}</code>
+            <code className="mt-1 block max-w-full overflow-x-auto rounded-xl bg-black/30 px-3 py-2 text-xs text-slate-600">{referralLink}</code>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+          <div className="rounded-2xl border border-slate-200 bg-white p-5">
             <p className="text-xs uppercase tracking-[0.35em] text-slate-400">Referral balance</p>
-            <p className="mt-2 font-display text-3xl font-semibold text-white">₹{balance}</p>
+            <p className="mt-2 font-display text-3xl font-semibold text-slate-900">₹{balance}</p>
             <div className="mt-4 flex items-center gap-3">
               <input
                 value={amount}
                 onChange={(e)=>setAmount(e.target.value)}
                 placeholder="Amount (leave empty to move all)"
-                className="flex-1 rounded-xl border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none"
+                className="flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none"
               />
               <button onClick={moveToWallet} className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-accent-500 px-4 py-2 text-sm font-semibold text-white">
                 Move to wallet
